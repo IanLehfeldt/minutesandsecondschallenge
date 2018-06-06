@@ -2,13 +2,16 @@ package com.ianl;
 
 public class Main {
 
+    private static final String INVALID_VALUE_MESSAGE = "Invalid value";
+
     public static void main(String[] args) {
         System.out.println(getDurationString(1200));
         System.out.println(getDurationString(3600));
         System.out.println(getDurationString(15467));
         System.out.println(getDurationString(-120));
-        System.out.println(getDurationString(6666));
+        System.out.println(getDurationString(3945));
         System.out.println(getDurationString(61, 0));
+        System.out.println(getDurationString(65, 45));
     }
 
     public static String getDurationString(int minutes, int seconds) {
@@ -16,9 +19,13 @@ public class Main {
             int totalHours = minutes / 60;
             int totalMinutes = minutes % 60;
 
-            return totalHours + "h " + totalMinutes + "m " + seconds + "s";
+            String hourString = getNumberString(totalHours);
+            String minuteString = getNumberString(totalMinutes);
+            String secondString = getNumberString(seconds);
+
+            return hourString + "h " + minuteString + "m " + secondString + "s";
         }
-        return "Invalid value";
+        return INVALID_VALUE_MESSAGE;
     }
 
     public static String getDurationString(int seconds) {
@@ -27,6 +34,13 @@ public class Main {
             int remainingSeconds = seconds % 60;
             return getDurationString(convertedToMinutes, remainingSeconds);
         }
-        return "Invalid value";
+        return INVALID_VALUE_MESSAGE;
+    }
+
+    public static String getNumberString(int number) {
+        if (number < 10) {
+            return "0"+number;
+        }
+        return number + "";
     }
 }
