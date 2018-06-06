@@ -23,7 +23,7 @@ public class Main {
     public static String getDurationString(int seconds) {
         if(seconds >= 0) {
             int convertedToMinutes = seconds / 60;
-            int remainingSeconds = (seconds % 60) * 60;
+            int remainingSeconds = seconds - (convertedToMinutes * 60);
             return getDurationString(convertedToMinutes, remainingSeconds);
         }
         return "Invalid value";
