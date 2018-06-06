@@ -8,12 +8,13 @@ public class Main {
         System.out.println(getDurationString(15467));
         System.out.println(getDurationString(-120));
         System.out.println(getDurationString(6666));
+        System.out.println(getDurationString(61, 0));
     }
 
     public static String getDurationString(int minutes, int seconds) {
         if((minutes >= 0) && (seconds >= 0 && seconds <= 59)) {
             int totalHours = minutes / 60;
-            int totalMinutes = minutes - ( 60 * totalHours );
+            int totalMinutes = minutes % 60;
 
             return totalHours + "h " + totalMinutes + "m " + seconds + "s";
         }
@@ -23,7 +24,7 @@ public class Main {
     public static String getDurationString(int seconds) {
         if(seconds >= 0) {
             int convertedToMinutes = seconds / 60;
-            int remainingSeconds = seconds - (convertedToMinutes * 60);
+            int remainingSeconds = seconds % 60;
             return getDurationString(convertedToMinutes, remainingSeconds);
         }
         return "Invalid value";
